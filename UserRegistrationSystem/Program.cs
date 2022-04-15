@@ -7,7 +7,7 @@ namespace UserRegistrationSystem
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To User Registration System");
+            Console.WriteLine("Welcome TO User Registration System");
             Console.WriteLine("UC 1Enter First Name");
             string firstName = Console.ReadLine();
             Program p = new Program();
@@ -100,6 +100,28 @@ namespace UserRegistrationSystem
                 Console.WriteLine("Mobile Number Should have 2 number for Country code followed by space and 10 digit number ");
             }
             return mobileNumber;
+
+        }
+        //UC 5,6,7,8 Password
+        public string isMatchPassword(string password)
+        {
+            try
+            {
+                if (Regex.Match(password, @"^([A-za-z]{5,})([@~!`#$%^&*]{1})([0-9]{1,})$").Success)
+                {
+                    Console.WriteLine("Success , Password is : " + password);
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Password Should have \n1)minimum 8 characters\n2)Atleast 1 UpperCase letter\n3)Atleast 1 number\n4)exactly 1 Special Charecter\n5)");
+            }
+            return password;
 
         }
     }
