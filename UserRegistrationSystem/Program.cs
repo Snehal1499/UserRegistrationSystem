@@ -37,6 +37,28 @@ namespace UserRegistrationDay26
             return firstName;
 
         }
+        //UC 2 Last Name
+        public string isMatchLastName(string lastName)
+        {
+            try
+            {
+                if (Regex.Match(lastName, "^[A-Z][a-z]{3,}$").Success)
+                {
+                    Console.WriteLine("Success , Last Name is : " + lastName);
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Last Name should Start with Upper Case Letter and minimum charecters should be 3 ");
+            }
+            return lastName;
+
+        }
 
     }
 
