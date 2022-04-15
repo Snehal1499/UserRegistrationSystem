@@ -59,6 +59,27 @@ namespace UserRegistrationDay26
             return lastName;
 
         }
+        //UC 3 and 9 Email
+        public string isMatchEmail(string email)
+        {
+            try
+            {
+                if (Regex.Match(email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$").Success)
+                {
+                    Console.WriteLine("Success , Email is : " + email);
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Email \nEx abc.xyz@bl.co.in\nEmail should have 3 mandatory Parts(abc,bl&co)with precise @ and . postions");
+            }
+            return email;
+        }
 
     }
 
