@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace UserRegistrationDay26
+namespace UserRegistrationSystem
 {
     internal class Program
     {
@@ -80,7 +80,28 @@ namespace UserRegistrationDay26
             }
             return email;
         }
+        //UC 4 Mobile Number
+        public string isMatchMobileNumber(string mobileNumber)
+        {
+            try
+            {
+                if (Regex.Match(mobileNumber, @"^([0-9]{2})\s([0-9]{10})$").Success)
+                {
+                    Console.WriteLine("Success , Mobile Number is : " + mobileNumber);
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Mobile Number Should have 2 number for Country code followed by space and 10 digit number ");
+            }
+            return mobileNumber;
 
+        }
     }
 
 }
