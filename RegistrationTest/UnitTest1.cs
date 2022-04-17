@@ -1,83 +1,75 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UserRegistrationSystem;
 
-namespace UserRegistrationTest
+namespace UserRegistrationSystem
 {
-    //UC 10
     [TestClass]
-    public class UserRegistrationTest
+    public class UnitTest1
     {
-        //UC 12
+        //validation for first Name
         [TestMethod]
-        [DataRow("Snehal")]//Valid First Name
-        [DataRow("snehal")]//InValid First Name
-        public void FirstNameCheck(string fname)
+        [DataRow("Snehal", "Snehal")]//Test will Pass
+        [DataRow("snehal", "Snehal")]//Test will Pass
+
+        public void ValidateFirstname(string a, string expected)
         {
-            try
-            {
-                bool value = Program.FirstNameCheck(fname);
-            }
-            catch (Program e)
-            {
-                Assert.AreEqual("Invalid First Name", e.Message);
-            }
+
+            var actual = RegexSample.ValidatingFirstName(a);
+            Assert.AreEqual(expected, actual);
         }
+        //Validating for Last Name
         [TestMethod]
-        [DataRow("Patil")]//Valid Last Name
-        [DataRow("patil")]//InValid Last Name
-        public void Given_Invalid_Last_Name(string lname)
+        [DataRow("Patil", "Patil")]//Test will Pass
+        [DataRow("patil", "Patil")]//Test will Pass
+
+        public void ValidateUserLastname(string a, string expected)
         {
-            try
-            {
-                bool value = Program.LastNameCheck(lname);
-            }
-            catch (Program e)
-            {
-                Assert.AreEqual("Invalid Last Name", e.Message);
-            }
+            var actual = RegexSample.ValidatingLastName(a);
+            Assert.AreEqual(expected, actual);
         }
+        //Validation for Email
         [TestMethod]
-        [DataRow("snehal@gmail.com")]//Valid Email
-        [DataRow("patil")]//InValid Email
-        public void Given_Invalid_Email(string mail)
+        [DataRow("abc@gmail.com", "abc@gmail.com")]
+        [DataRow("abc-100@yahoo.com", "abc-100@yahoo.com")]
+        [DataRow("abc.100@yahoo.com", "abc.100@yahoo.com")]
+        [DataRow("abc111@yahoo.com", "abc111@yahoo.com")]
+        [DataRow("abc111@abc.com", "abc111@abc.com")]
+        [DataRow("abc-100@abc.net", "abc-100@abc.net")]
+        [DataRow("abc.100@abc.com.au", "abc.100@abc.com.au")]
+
+
+        public void ValidateUserEmail(string a, string expected)
         {
-            try
-            {
-                bool value = Program.LastNameCheck(mail);
-            }
-            catch (Program e)
-            {
-                Assert.AreEqual("Invalid Email", e.Message);
-            }
+            var actual = RegexSample.ValidatingEmailId(a);
+            Assert.AreEqual(expected, actual);
         }
+
+        //Validation for Phone Number
         [TestMethod]
-        [DataRow("91 8106529025")]//Valid Mobile Number
-        [DataRow("801878912")]//InValid Mobile Number
-        public void Given_Invalid_MobileNumber(string number)
+
+        [DataRow("91 8106529025", "91 8106529025")]//Test Will Pass
+        [DataRow("8106529025", "(91 8106529025")]//Test will Fail
+
+        public void ValidateUserPhoneNumber(string a, string expected)
         {
-            try
-            {
-                bool value = Program.LastNameCheck(number);
-            }
-            catch (Program e)
-            {
-                Assert.AreEqual("Invalid Mobile Number", e.Message);
-            }
+            var actual = RegexSample.ValidatingPhoneNum(a);
+            Assert.AreEqual(expected, actual);
         }
+
+        ////Validation for Password
         [TestMethod]
-        [DataRow("Password.4")]//Valid Password
-        [DataRow("password")]//InValid Password
-        public void Given_Invalid_Password(string pass)
+        [DataRow("Snehal@123", "Snehal@123")]//Will Pass
+        [DataRow("Sne#al123", "Sne#ali123")]//Will Pass
+        [DataRow("Sne@al1A ", "Snehal1A")]//Will Fail
+
+
+        public void ValidateUserPassword(string a, string expected)
         {
-            try
-            {
-                bool value = Program.LastNameCheck(pass);
-            }
-            catch (Program e)
-            {
-                Assert.AreEqual("Invalid PassWord", e.Message);
-            }
+            var actual = RegexSample.ValidatingPassWord(a);
+            Assert.AreEqual(expected, actual);
         }
+
+
 
     }
 }
