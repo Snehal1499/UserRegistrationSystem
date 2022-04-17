@@ -3,7 +3,6 @@ using UserRegistrationSystem;
 
 
 //UC 9 Test
-
 namespace UserRegistrationSystem
 {
     [TestClass]

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserRegistrationSystem", "U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoodTest", "..\MoodTest\MoodTest.csproj", "{1E2F02A8-F65F-495E-9C6A-B359360D7EA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegistrationTest", "..\RegistrationTest\RegistrationTest.csproj", "{ADC50C74-D310-49E5-BAD9-14D8A2D26203}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRegistrationTest", "..\RegistrationTest\UserRegistrationTest.csproj", "{ADC50C74-D310-49E5-BAD9-14D8A2D26203}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

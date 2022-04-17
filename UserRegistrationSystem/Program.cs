@@ -3,9 +3,14 @@ using System.Text.RegularExpressions;
 
 namespace UserRegistrationSystem
 {
-    public class Program
+    public class Program : Exception
     {
         public static string firstName, lastName, email, mobileNumber, password;
+        public enum ExceptionType
+        {
+            Invalid_FirstName, Invalid_LastName, Invalid_Email, Invalid_MobileNumber, Invalid_Password
+        }
+        private readonly ExceptionType type;
         public static void Main(string[] args)
         {
             Console.WriteLine("User Registration");
@@ -29,16 +34,23 @@ namespace UserRegistrationSystem
         //UC 1 First Name
         public static bool FirstNameCheck(string fname)
         {
-            var result = Regex.Match(fname, "^[A-Z][a-z]{3,}$").Success;
-            if (result)
+            try
             {
-                Console.WriteLine("Success");
-                return true;
+                var result = Regex.Match(fname, "^[A-Z][a-z]{3,}$").Success;
+                if (result)
+                {
+                    Console.WriteLine("Success");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    return false;
+                }
             }
-            else
+            catch
             {
-                Console.WriteLine("Failed");
-                return false;
+                throw new Program(Program.ExceptionType.Invalid_FirstName, "Invalid First Name");
             }
 
         }
@@ -46,66 +58,104 @@ namespace UserRegistrationSystem
         //UC 2 Last Name
         public static bool LastNameCheck(string lname)
         {
-            var result = Regex.Match(lname, "^[A-Z][a-z]{3,}$").Success;
-            if (result)
+            try
             {
-                Console.WriteLine("Success");
-                return true;
+                var result = Regex.Match(lname, "^[A-Z][a-z]{3,}$").Success;
+                if (result)
+                {
+                    Console.WriteLine("Success");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    return false;
+                }
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine("Failed");
-                return false;
+                throw new Program(Program.ExceptionType.Invalid_FirstName, "Invalid Last Name");
             }
 
         }
         //UC 3 and 9 Email
         public static bool EmailCheck(string mail)
         {
-            var result = Regex.Match(mail, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$").Success;
-            if (result)
+            try
             {
-                Console.WriteLine("Success");
-                return true;
+                var result = Regex.Match(mail, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$").Success;
+                if (result)
+                {
+                    Console.WriteLine("Success");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    return false;
+                }
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine("Failed");
-                return false;
+                throw new Program(Program.ExceptionType.Invalid_FirstName, "Invalid Email");
             }
-
         }
         //UC 4 Mobile Number
         public static bool MobileNumberCheck(string mobileNumber)
         {
-            var result = Regex.Match(mobileNumber, @"^([0-9]{2})\s([0-9]{10})$").Success;
-            if (result)
+            try
             {
-                Console.WriteLine("Success");
-                return true;
+                var result = Regex.Match(mobileNumber, @"^([0-9]{2})\s([0-9]{10})$").Success;
+                if (result)
+                {
+                    Console.WriteLine("Success");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    return false;
+                }
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine("Failed");
-                return false;
+                throw new Program(Program.ExceptionType.Invalid_FirstName, "Invalid Mobile Number");
             }
 
         }
         //UC 5 Password
         public static bool PasswordCheck(string password)
         {
-            var result = Regex.Match(password, @"^([A-Za-z]{5,})([`~!@#$%^&*()_+=:;.,'<>/|\?]{1})([0-9]{1,})$").Success;
-            if (result)
+            try
             {
-                Console.WriteLine("Success");
-                return true;
+                var result = Regex.Match(password, @"^([A-Za-z]{5,})([`~!@#$%^&*()_+=:;.,'<>/|\?]{1})([0-9]{1,})$").Success;
+                if (result)
+                {
+                    Console.WriteLine("Success");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                    return false;
+                }
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine("Failed");
-                return false;
+                throw new Program(Program.ExceptionType.Invalid_FirstName, "Invalid PassWord");
             }
 
+        }
+
+        //UC 10
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="message"></param>
+        public Program(ExceptionType type, string message) : base(message)
+        {
+            this.type = type;
         }
     }
 
